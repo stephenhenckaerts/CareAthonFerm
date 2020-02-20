@@ -3,6 +3,7 @@
     <span id="title">FERM</span>
     <button id="takePicture" mat-button (click)="capture($event)" (tap)="capture($event)" (press)="capture($event)">Take a picture</button>
     <button mat-button (click)="sendImage()">Send</button>
+    <span [(ngModel)]="log"></span>
   </mat-toolbar>
 </div>
 <div id="videoContainer">

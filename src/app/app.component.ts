@@ -13,7 +13,9 @@ import { ImageService } from './services/ImageService';
   styleUrls: ["./app.component.css"]
 })
 export class AppComponent implements OnInit {
+  log: string;
   image = null;
+  receivedData;
   videoWidth = 0;
   videoHeight = 0;
   @ViewChild("video", { static: true }) videoElement: ElementRef;
@@ -28,8 +30,11 @@ export class AppComponent implements OnInit {
   sendImage() {
     if(this.image) {
       this.imageService.sendImage(this.image).subscribe(data => {
-        console.log(data);        
+        this.receivedData = data;        
       });
+      if(this.receivedData.received) {
+        this.log = "Logged in";
+      }
     }
   }
 
