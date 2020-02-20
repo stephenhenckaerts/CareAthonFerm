@@ -39,7 +39,7 @@ export class AppComponent implements OnInit {
     });
   }
 
-  capture() {
+  capture(event: any): void {
     this.renderer.setProperty(this.canvas.nativeElement, 'width', this.videoWidth);
     this.renderer.setProperty(this.canvas.nativeElement, 'height', this.videoHeight);
     this.canvas.nativeElement.getContext('2d').drawImage(this.videoElement.nativeElement, 0, 0);
