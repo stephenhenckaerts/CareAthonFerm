@@ -5,6 +5,7 @@ import {
   Renderer2,
   ViewChild
 } from "@angular/core";
+import { ImageService } from './services/ImageService';
 
 @Component({
   selector: "app-root",
@@ -12,19 +13,24 @@ import {
   styleUrls: ["./app.component.css"]
 })
 export class AppComponent implements OnInit {
-  image;
+  image = null;
   videoWidth = 0;
   videoHeight = 0;
   @ViewChild("video", { static: true }) videoElement: ElementRef;
   @ViewChild("canvas", { static: true }) canvas: ElementRef;
 
-  constructor(private renderer: Renderer2) {}
+  constructor(private renderer: Renderer2, private imageService: ImageService) {}
 
   ngOnInit() {
     this.startCamera();
   }
 
   sendImage() {
+    if(this.image) {
+      this.imageService.sendImage(this.image).subscribe(data => {
+        console.log(data);        
+      });
+    }
   }
 
   startCamera() {
@@ -59,7 +65,6 @@ export class AppComponent implements OnInit {
     this.renderer.setProperty(this.canvas.nativeElement, 'height', this.videoHeight);
     this.canvas.nativeElement.getContext('2d').drawImage(this.videoElement.nativeElement, 0, 0);
     this.image = this.canvas.nativeElement.toDataURL("image/png");
-    console.log(this.image);
   }
 
   constraints = {
