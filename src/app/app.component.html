@@ -1,12 +1,14 @@
 <div id="header">
   <mat-toolbar color="primary">
     <span id="title">FERM</span>
+    <button mat-button (click)="capture()">Take a picture</button>
+    <button mat-button>Send</button>
+  
   </mat-toolbar>
 </div>
-<div id="imageContainer">
+<div id="videoContainer">
+  <video #video class="vid" autoplay></video>
 </div>
-<div id="buttonContainer">
-  <button mat-button color="primary">Take a picture</button>
-  <br />
-  <button mat-button color="primary">Send</button>
+<div id="imageContainer">
+  <canvas #canvas class="vid"></canvas>
 </div>
