@@ -12,6 +12,7 @@ import {
   styleUrls: ["./app.component.css"]
 })
 export class AppComponent implements OnInit {
+  image;
   videoWidth = 0;
   videoHeight = 0;
   @ViewChild("video", { static: true }) videoElement: ElementRef;
@@ -21,6 +22,9 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.startCamera();
+  }
+
+  sendImage() {
   }
 
   startCamera() {
@@ -50,27 +54,12 @@ export class AppComponent implements OnInit {
     });
   }
 
-<<<<<<< HEAD
   capture(event: any): void {
     this.renderer.setProperty(this.canvas.nativeElement, 'width', this.videoWidth);
     this.renderer.setProperty(this.canvas.nativeElement, 'height', this.videoHeight);
     this.canvas.nativeElement.getContext('2d').drawImage(this.videoElement.nativeElement, 0, 0);
-=======
-  capture() {
-    this.renderer.setProperty(
-      this.canvas.nativeElement,
-      "width",
-      this.videoWidth
-    );
-    this.renderer.setProperty(
-      this.canvas.nativeElement,
-      "height",
-      this.videoHeight
-    );
-    this.canvas.nativeElement
-      .getContext("2d")
-      .drawImage(this.videoElement.nativeElement, 0, 0);
->>>>>>> b259d921b7f11da79fc350b5ca3203a7c620095c
+    this.image = this.canvas.nativeElement.toDataURL("image/png");
+    console.log(this.image);
   }
 
   constraints = {

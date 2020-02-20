@@ -4,7 +4,7 @@ import { map } from "rxjs/operators";
 import { HttpClient } from "@angular/common/http";
 import { ResponseModel } from "../models/ResponseModel";
 
-const BASEAPIURL: string = "https://groot.peer-krokodil.be";
+const BASEAPIURL: string = "https://groot.beer-krokodil.be";
 
 @Injectable({ providedIn: "root" })
 export class ImageService {
