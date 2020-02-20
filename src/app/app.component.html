@@ -4,9 +4,10 @@
   </mat-toolbar>
 </div>
 <div id="imageContainer">
+  <img id="faceImage" src="../assets/img/face.jpg" alt="">
 </div>
 <div id="buttonContainer">
   <button mat-button color="primary">Take a picture</button>
   <br />
-  <button mat-button color="primary">Send</button>
+  <button mat-button color="primary" (click)="submitImage()">Send</button>
 </div>
