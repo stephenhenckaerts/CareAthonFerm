@@ -1,9 +1,10 @@
 <div id="header">
   <mat-toolbar color="primary">
     <span id="title">FERM</span>
-    <button mat-button (click)="capture()">Take a picture</button>
+    <button id="takePicture" mat-button (click)="capture($event)" (tap)="capture($event)" (press)="capture($event)">Take
+      a picture</button>
     <button mat-button (click)="sendImage()">Send</button>
-
+    <span [(ngModel)]="log"></span>
   </mat-toolbar>
 </div>
 <div id="videoContainer">
@@ -11,6 +12,4 @@
 </div>
 <div id="imageContainer">
   <canvas #canvas class="vid"></canvas>
-  <img id="faceImage" src="../assets/img/face.jpg" alt="">
-  <canvas id="myCanvas" />
 </div>

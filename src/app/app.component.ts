@@ -13,6 +13,9 @@ import { ImageService } from "./services/ImageService";
   styleUrls: ["./app.component.css"]
 })
 export class AppComponent implements OnInit {
+  log: string;
+  image = null;
+  receivedData;
   videoWidth = 0;
   videoHeight = 0;
   @ViewChild("video", { static: true }) videoElement: ElementRef;
@@ -25,6 +28,17 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.startCamera();
+  }
+
+  sendImage() {
+    if (this.image) {
+      this.imageService.sendImage(this.image).subscribe(data => {
+        this.receivedData = data;
+      });
+      if (this.receivedData.received) {
+        this.log = "Logged in";
+      }
+    }
   }
 
   startCamera() {
@@ -54,7 +68,7 @@ export class AppComponent implements OnInit {
     });
   }
 
-  capture() {
+  capture(event: any): void {
     this.renderer.setProperty(
       this.canvas.nativeElement,
       "width",
@@ -68,6 +82,7 @@ export class AppComponent implements OnInit {
     this.canvas.nativeElement
       .getContext("2d")
       .drawImage(this.videoElement.nativeElement, 0, 0);
+    this.image = this.canvas.nativeElement.toDataURL("image/png");
   }
 
   sendImage() {
