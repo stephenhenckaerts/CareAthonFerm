@@ -5,6 +5,7 @@ import {
   Renderer2,
   ViewChild
 } from "@angular/core";
+import { ImageService } from "./services/ImageService";
 
 @Component({
   selector: "app-root",
@@ -17,7 +18,10 @@ export class AppComponent implements OnInit {
   @ViewChild("video", { static: true }) videoElement: ElementRef;
   @ViewChild("canvas", { static: true }) canvas: ElementRef;
 
-  constructor(private renderer: Renderer2) {}
+  constructor(
+    private renderer: Renderer2,
+    private imageService: ImageService
+  ) {}
 
   ngOnInit() {
     this.startCamera();
@@ -64,6 +68,14 @@ export class AppComponent implements OnInit {
     this.canvas.nativeElement
       .getContext("2d")
       .drawImage(this.videoElement.nativeElement, 0, 0);
+  }
+
+  sendImage() {
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+    var img = document.getElementById("faceImage");
+    ctx.drawImage(img, 10, 10);
+    alert(c.toDataURL());
   }
 
   constraints = {
